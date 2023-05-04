@@ -16,7 +16,7 @@ public class LoginPage {
     @FindBy(xpath = "//input[@id='password']")
     private WebElement fieldPassword;
 
-    @FindBy(xpath = "//input[@id='formly_3_input_username_0']")
+    @FindBy(id = "formly_1_input_username_0")
     private WebElement fieldUsername2;
 
     @FindBy(xpath = "//button[@class='btn btn-danger']")
@@ -54,6 +54,10 @@ public class LoginPage {
 
     public WebElement getIncorrectMessage() {
         return incorrectMessage;
+    }
+
+    public WebElement getLoginBtn() {
+        return loginBtn;
     }
 
     public void clearAllField(){

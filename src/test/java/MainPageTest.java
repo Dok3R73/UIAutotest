@@ -88,19 +88,26 @@ public class MainPageTest {
         Assert.assertTrue(driver.getTitle().contains(TITLE_LIFETIME_COURSE));
     }
 
-    /*
-        @Test
-        public void testingmethod() {
-           actions.moveToElement(mainPage.getSliderCourse(), 700, 200)
-                   .clickAndHold()
-                   .moveToElement(mainPage.getSliderCourse(), 100, 200)
-                   .release()
-                   .build()
-                   .perform();
 
-            //mainPage.clickTESTING();
-        }
-    */
+    @Test
+    public void sliderBlockTest() throws InterruptedException {
+        jse.executeScript("window.scrollBy(0,2500)");
+        jse.executeScript("window.scrollBy(0,-2500)");
+
+        actions.moveToElement(mainPage.getSliderCourse())
+                .build()
+                .perform();
+        Thread.sleep(1000);
+
+        mouseMovement();
+        mouseMovement();
+        mouseMovement();
+
+        mainPage.clickRegisterNowBtn();
+
+        Assert.assertTrue(driver.getTitle().contains(TITLE_LIFETIME_COURSE));
+    }
+
 
     @Test
     public void sliderMenuCourseTest() {
@@ -120,5 +127,14 @@ public class MainPageTest {
     @AfterClass
     public static void closeBrowser() {
         driver.close();
+    }
+
+    public void mouseMovement() {
+        actions.moveToElement(mainPage.getSliderCourse(), 300, 0)
+                .clickAndHold()
+                .moveByOffset(-500, 0)
+                .release()
+                .build()
+                .perform();
     }
 }

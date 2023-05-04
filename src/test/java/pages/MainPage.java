@@ -34,10 +34,10 @@ public class MainPage {
     @FindBy(xpath = "//li[@id='menu-item-27617']//span[@class='menu-text'][normalize-space()='Resources']")
     private WebElement resourcesMenuSlider;
 
-    @FindBy(xpath = "(//a[@class='elementor-button elementor-slide-button elementor-size-sm'][normalize-space()='Learn More'])[2]")
-    private WebElement testingBUTTON;
+    @FindBy(xpath = "//div[@class='elementor-repeater-item-4508007 swiper-slide swiper-slide-active']//a[@class='elementor-button elementor-slide-button elementor-size-sm'][normalize-space()='Register Now']")
+    private WebElement registerNowBtn;
 
-    @FindBy(xpath = "//div[@class='elementor-swiper']")
+    @FindBy(xpath = "//div[@data-id='155c094d']")
     private WebElement sliderCourse;
 
     @FindBy(xpath = "//li[@id='menu-item-27580']//span[@class='sub-arrow']")
@@ -61,8 +61,8 @@ public class MainPage {
         practiceSiteOne.click();
     }
 
-    public void clickTESTING() {
-        testingBUTTON.click();
+    public void clickRegisterNowBtn() {
+        registerNowBtn.click();
     }
 
     public void clickLifetimeBtn() {
