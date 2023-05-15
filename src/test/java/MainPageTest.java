@@ -1,16 +1,12 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.MainPage;
+import utils.ActionsClass;
+import utils.JavaScriptExecutor;
 import utils.Webdriver;
-
-import java.util.concurrent.TimeUnit;
 
 public class MainPageTest {
 
@@ -21,120 +17,93 @@ public class MainPageTest {
 
     public static WebDriver driver = Webdriver.getChromeDriver();
     public static MainPage mainPage = new MainPage(driver);
-    public static JavascriptExecutor jse = (JavascriptExecutor) driver;
-    public static Actions actions = new Actions(driver);
+    public static JavaScriptExecutor jse = new JavaScriptExecutor(driver);
+    public static ActionsClass actions = new ActionsClass(driver);
 
     @BeforeMethod
-    public void setup() throws InterruptedException {
-        beforeMethod();
-    }
-
-    public void beforeMethod() throws InterruptedException {
+    public void setup() {
         driver.get(Webdriver.TESTING_URL);
         // driver.manage().window().fullscreen();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        Thread.sleep(2000);
     }
 
     @Test
     public void downloadWebSite() {
-        Assert.assertTrue(driver.getTitle().contains(TITLE));
+        Assert.assertTrue(driver.getTitle().contains(TITLE), "Заголовок неправильный");
     }
 
     @Test
-    public void horizontMenuTest() {
-        Assert.assertTrue(mainPage.getHorizontMenu().isDisplayed());
+    public void horizontalMenuTest() {
+        Assert.assertTrue(mainPage.getHorizontalMenuIsDisplayed(), "Горизонтальное меню не отображается");
     }
 
     @Test
     public void headerTest() {
-        Assert.assertTrue(mainPage.getHeader().isDisplayed());
+        Assert.assertTrue(mainPage.getHeaderIsDisplayed(), "Хидер не отображается");
     }
 
     @Test
     public void windowAD() {
-        driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
+        actions.moveToUserElement(mainPage.getHeader());
 
-        boolean ad;
-        try {
-            jse.executeScript("arguments[0].click();", mainPage.getCloseADBtn());
-            ad = true;
-        } catch (Exception e) {
-            ad = false;
-        }
-
-        Assert.assertTrue(ad);
+        Assert.assertTrue(mainPage.getCloseADBtnIsDisplayed(), "Реклама не отображается");
     }
 
     @Test
     public void menuScrollTest() {
-        jse.executeScript("window.scrollBy(0,2500)");
+        jse.scrollPositive();
+
         mainPage.clickBlogBtnMenu();
 
-        Assert.assertTrue(driver.getTitle().contains(TITLE_BLOG));
+        Assert.assertTrue(driver.getTitle().contains(TITLE_BLOG), "Заголовок неправильный");
     }
 
     @Test
     public void footerTest() {
-        Assert.assertTrue(mainPage.getFooter().isDisplayed());
+        Assert.assertTrue(mainPage.getFooterIsDisplayed(), "Подвал не отображается");
     }
 
     @Test
     public void courseTest() {
-        Assert.assertTrue(mainPage.getCourse().isDisplayed());
+        actions.moveToUserElement(mainPage.getHeader());
+
+        Assert.assertTrue(mainPage.getCourseIsDisplayed(), "Курсы не отображаются");
 
         mainPage.clickLifetimeBtn();
 
-        Assert.assertTrue(driver.getTitle().contains(TITLE_LIFETIME_COURSE));
+        Assert.assertTrue(driver.getTitle().contains(TITLE_LIFETIME_COURSE), "Заголовок неправильный");
     }
 
-
     @Test
-    public void sliderBlockTest() throws InterruptedException {
-        jse.executeScript("window.scrollBy(0,2500)");
-        jse.executeScript("window.scrollBy(0,-2500)");
+    public void sliderBlockTest() {
+        actions.moveToUserElement(mainPage.getSliderCourse());
 
-        actions.moveToElement(mainPage.getSliderCourse())
-                .build()
-                .perform();
-        Thread.sleep(1000);
+        mainPage.clickCloseADBtn();
 
-        mouseMovement();
-        mouseMovement();
-        mouseMovement();
+        actions.mouseMovementUserElementOnlyX(mainPage.getSliderCourse(), 300, -500);
 
         mainPage.clickRegisterNowBtn();
 
-        Assert.assertTrue(driver.getTitle().contains(TITLE_LIFETIME_COURSE));
+        Assert.assertTrue(driver.getTitle().contains(TITLE_LIFETIME_COURSE), "Заголовок неправильный");
     }
-
 
     @Test
     public void sliderMenuCourseTest() {
-        actions.moveToElement(mainPage.getAllCoursePosition()).build().perform();
+        actions.moveToUserElement(mainPage.getAllCoursePosition());
 
-        Assert.assertTrue(mainPage.getDevOpsBtn().isDisplayed());
+        Assert.assertTrue(mainPage.getDevOpsBtnIsDisplayed(), "Кнопака devOps не отображается");
     }
 
     @Test
-    public void practcieSiteOneTest() {
-        actions.moveToElement(mainPage.getResourcesMenuSlider()).build().perform();
+    public void practiceSiteOneTest() {
+        actions.moveToUserElement(mainPage.getResourcesMenuSlider());
+
         mainPage.clickPracticeSiteOne();
 
-        Assert.assertTrue(driver.getTitle().contains(TITLE_PRACTICE_SITE_ONE));
+        Assert.assertTrue(driver.getTitle().contains(TITLE_PRACTICE_SITE_ONE), "Заголовок неправильный");
     }
 
     @AfterClass
     public static void closeBrowser() {
         driver.close();
-    }
-
-    public void mouseMovement() {
-        actions.moveToElement(mainPage.getSliderCourse(), 300, 0)
-                .clickAndHold()
-                .moveByOffset(-500, 0)
-                .release()
-                .build()
-                .perform();
     }
 }

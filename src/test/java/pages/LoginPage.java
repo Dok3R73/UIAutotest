@@ -17,52 +17,56 @@ public class LoginPage {
     private WebElement fieldPassword;
 
     @FindBy(id = "formly_1_input_username_0")
-    private WebElement fieldUsername2;
+    private WebElement fieldUsernameCheck;
 
-    @FindBy(xpath = "//button[@class='btn btn-danger']")
+    @FindBy(xpath = "(//button[normalize-space()='Login'])")
     private WebElement loginBtn;
 
-    @FindBy(xpath = "(//p[normalize-space()=\"You're logged in!!\"])[1]")
+    @FindBy(xpath = "(//p[normalize-space()=\"You're logged in!!\"])")
     private WebElement passedLoginText;
 
-    @FindBy(xpath = "//div[@class='alert alert-danger ng-binding ng-scope']")
+    @FindBy(xpath = "//div[@ng-if='Auth.error']")
     private WebElement incorrectMessage;
 
     public LoginPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
-    public void clickLoginBtn(){
+    public LoginPage clickLoginBtn(){
         loginBtn.click();
+        return this;
     }
 
-    public void inputFieldUsername(String username){
+    public LoginPage inputFieldUsername(String username){
         fieldUsername.sendKeys(username);
+        return this;
     }
 
-    public void inputFieldPassword(String password){
+    public LoginPage inputFieldPassword(String password){
         fieldPassword.sendKeys(password);
+        return this;
     }
 
-    public void inputFieldUsername2(String username){
-        fieldUsername2.sendKeys(username);
+    public LoginPage inputFieldUsernameCheck(String username){
+        fieldUsernameCheck.sendKeys(username);
+        return this;
     }
 
-    public WebElement getPassedLoginText() {
-        return passedLoginText;
+    public Boolean getPassedLoginTextIsDisplayed() {
+        return passedLoginText.isDisplayed();
     }
 
-    public WebElement getIncorrectMessage() {
-        return incorrectMessage;
+    public Boolean getIncorrectMessageIsDisplayed() {
+        return incorrectMessage.isDisplayed();
     }
 
-    public WebElement getLoginBtn() {
-        return loginBtn;
+    public Boolean getLoginBtnIsEnabled() {
+        return loginBtn.isEnabled();
     }
 
     public void clearAllField(){
         fieldUsername.clear();
         fieldPassword.clear();
-        fieldUsername2.clear();
+        fieldUsernameCheck.clear();
     }
 }

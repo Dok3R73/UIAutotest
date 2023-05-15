@@ -10,10 +10,10 @@ public class MainPage {
 
     private WebDriver driver;
 
-    @FindBy(xpath = "//div[@class='site-primary-header-wrap ast-builder-grid-row-container site-header-focus-item ast-container']//div[@class='ast-builder-grid-row ast-builder-grid-row-has-sides ast-builder-grid-row-no-center']")
-    private WebElement horizontMenu;
+    @FindBy(xpath = "//div[@data-section='section-primary-header-builder']")
+    private WebElement horizontalMenu;
 
-    @FindBy(xpath = "//body/div[@id='page']/header[@id='masthead']/div[@id='ast-desktop-header']/div[1]")
+    @FindBy(xpath = "//header")
     private WebElement header;
 
     @FindBy(xpath = "//i[@class='eicon-close']")
@@ -22,10 +22,10 @@ public class MainPage {
     @FindBy(xpath = "(//span[contains(@class,'menu-text')][normalize-space()='Blog'])[2]")
     private WebElement blogBtnMenu;
 
-    @FindBy(xpath = "//div[@data-id='3a83f54f']")
+    @FindBy(xpath = "//footer")
     private WebElement footer;
 
-    @FindBy(xpath = "//div[@data-id='4fd7f709']")
+    @FindBy(xpath = "//div[@class='elementor-icon-box-content']")
     private WebElement course;
 
     @FindBy(xpath = "(//a[@role='button'])[1]")
@@ -37,7 +37,7 @@ public class MainPage {
     @FindBy(xpath = "//div[@class='elementor-repeater-item-4508007 swiper-slide swiper-slide-active']//a[@class='elementor-button elementor-slide-button elementor-size-sm'][normalize-space()='Register Now']")
     private WebElement registerNowBtn;
 
-    @FindBy(xpath = "//div[@data-id='155c094d']")
+    @FindBy(xpath = "//div[@class='elementor-swiper']")
     private WebElement sliderCourse;
 
     @FindBy(xpath = "//li[@id='menu-item-27580']//span[@class='sub-arrow']")
@@ -57,8 +57,12 @@ public class MainPage {
         blogBtnMenu.click();
     }
 
-    public void clickPracticeSiteOne(){
+    public void clickPracticeSiteOne() {
         practiceSiteOne.click();
+    }
+
+    public void clickCloseADBtn() {
+        closeADBtn.click();
     }
 
     public void clickRegisterNowBtn() {
@@ -73,39 +77,40 @@ public class MainPage {
         return sliderCourse;
     }
 
-    public WebElement getDevOpsBtn() {
-        return devOpsBtn;
+    public Boolean getDevOpsBtnIsDisplayed() {
+        return devOpsBtn.isDisplayed();
     }
 
     public WebElement getAllCoursePosition() {
         return allCoursePosition;
     }
 
-    public WebElement getHeader() {
-        return header;
+    public Boolean getHeaderIsDisplayed() {
+        return header.isDisplayed();
     }
 
-    public WebElement getCourse() {
-        return course;
+    public Boolean getCourseIsDisplayed() {
+        return course.isDisplayed();
     }
 
     public WebElement getResourcesMenuSlider() {
         return resourcesMenuSlider;
     }
 
-    public WebElement getHorizontMenu() {
-        return horizontMenu;
+    public Boolean getHorizontalMenuIsDisplayed() {
+        return horizontalMenu.isDisplayed();
     }
 
-    public WebElement getCloseADBtn() {
-        return closeADBtn;
+    public Boolean getCloseADBtnIsDisplayed() {
+        return closeADBtn.isDisplayed();
     }
 
-    public WebElement getFooter() {
-        return footer;
+    public Boolean getFooterIsDisplayed() {
+        return footer.isDisplayed();
     }
 
-    public WebElement getBlogBtnMenu() {
-        return blogBtnMenu;
+    public WebElement getHeader() {
+        return header;
     }
+
 }
