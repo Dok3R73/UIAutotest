@@ -28,7 +28,7 @@ public class MainPageTest {
 
     @Test
     public void downloadWebSite() {
-        Assert.assertTrue(driver.getTitle().contains(TITLE), "Заголовок неправильный");
+        Assert.assertTrue(driver.getTitle().contains(TITLE), "Заголовок неправильный / сайт не загрузился");
     }
 
     @Test
@@ -54,7 +54,7 @@ public class MainPageTest {
 
         mainPage.clickBlogBtnMenu();
 
-        Assert.assertTrue(driver.getTitle().contains(TITLE_BLOG), "Заголовок неправильный");
+        Assert.assertTrue(driver.getTitle().contains(TITLE_BLOG), "Заголовок неправильный / нет редиректа");
     }
 
     @Test
@@ -70,7 +70,7 @@ public class MainPageTest {
 
         mainPage.clickLifetimeBtn();
 
-        Assert.assertTrue(driver.getTitle().contains(TITLE_LIFETIME_COURSE), "Заголовок неправильный");
+        Assert.assertTrue(driver.getTitle().contains(TITLE_LIFETIME_COURSE), "Заголовок неправильный / нет редиректа");
     }
 
     @Test
@@ -83,7 +83,7 @@ public class MainPageTest {
 
         mainPage.clickRegisterNowBtn();
 
-        Assert.assertTrue(driver.getTitle().contains(TITLE_LIFETIME_COURSE), "Заголовок неправильный");
+        Assert.assertTrue(driver.getTitle().contains(TITLE_LIFETIME_COURSE), "Заголовок неправильный / нет редиректа");
     }
 
     @Test
@@ -99,7 +99,7 @@ public class MainPageTest {
 
         mainPage.clickPracticeSiteOne();
 
-        Assert.assertTrue(driver.getTitle().contains(TITLE_PRACTICE_SITE_ONE), "Заголовок неправильный");
+        Assert.assertTrue(driver.getTitle().contains(TITLE_PRACTICE_SITE_ONE), "Заголовок неправильный / нет редиректа");
     }
 
     @AfterClass

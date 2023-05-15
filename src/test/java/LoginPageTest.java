@@ -31,7 +31,7 @@ public class LoginPageTest {
                 .inputFieldUsernameCheck(CASE_USERNAME)
                 .clickLoginBtn();
 
-        Assert.assertTrue(loginPage.getIncorrectMessageIsDisplayed(), "Нет сообщения о некоректных данных");
+        Assert.assertTrue(loginPage.getIncorrectMessageIsDisplayed(), "Нет сообщения о некорректных данных");
 
     }
 
@@ -42,7 +42,7 @@ public class LoginPageTest {
                 .inputFieldUsernameCheck(USERNAME)
                 .clickLoginBtn();
 
-        Assert.assertTrue(loginPage.getIncorrectMessageIsDisplayed(), "Нет сообщения о некоректных данных");
+        Assert.assertTrue(loginPage.getIncorrectMessageIsDisplayed(), "Нет сообщения о некорректных данных");
     }
 
     @Test(priority = 3)
@@ -60,7 +60,7 @@ public class LoginPageTest {
                 .inputFieldUsernameCheck(INCORRECT_USERNAME_AND_PASSWORD)
                 .clickLoginBtn();
 
-        Assert.assertTrue(loginPage.getIncorrectMessageIsDisplayed(), "Нет сообщения о некоректных данных");
+        Assert.assertTrue(loginPage.getIncorrectMessageIsDisplayed(), "Нет сообщения о некорректных данных");
     }
 
 
