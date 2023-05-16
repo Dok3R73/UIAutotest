@@ -7,13 +7,11 @@ import pages.LoginPage;
 import utils.Webdriver;
 
 public class LoginPageTest {
-
     public static final String USERNAME = "angular";
     public static final String PASSWORD = "password";
     public static final String CASE_USERNAME = "Angular";
     public static final String CASE_PASSWORD = "pAssWoRd";
     public static final String INCORRECT_USERNAME_AND_PASSWORD = "test";
-
 
     public static WebDriver driver = Webdriver.getChromeDriver();
     public static LoginPage loginPage = new LoginPage(driver);
@@ -21,7 +19,6 @@ public class LoginPageTest {
     @BeforeMethod
     public void setup() {
         driver.get(Webdriver.TESTING_LOGIN_URL);
-        // driver.manage().window().fullscreen();
     }
 
     @Test(priority = 1)
@@ -30,9 +27,7 @@ public class LoginPageTest {
                 .inputFieldPassword(CASE_PASSWORD)
                 .inputFieldUsernameCheck(CASE_USERNAME)
                 .clickLoginBtn();
-
         Assert.assertTrue(loginPage.getIncorrectMessageIsDisplayed(), "Нет сообщения о некорректных данных");
-
     }
 
     @Test(priority = 2)
@@ -41,7 +36,6 @@ public class LoginPageTest {
                 .inputFieldPassword(CASE_PASSWORD)
                 .inputFieldUsernameCheck(USERNAME)
                 .clickLoginBtn();
-
         Assert.assertTrue(loginPage.getIncorrectMessageIsDisplayed(), "Нет сообщения о некорректных данных");
     }
 
@@ -49,7 +43,6 @@ public class LoginPageTest {
     public void emptyFieldTest() {
         loginPage.inputFieldUsernameCheck(USERNAME)
                 .inputFieldPassword(PASSWORD);
-
         Assert.assertFalse(loginPage.getLoginBtnIsEnabled(), "Кнопка активна");
     }
 
@@ -59,7 +52,6 @@ public class LoginPageTest {
                 .inputFieldPassword(INCORRECT_USERNAME_AND_PASSWORD)
                 .inputFieldUsernameCheck(INCORRECT_USERNAME_AND_PASSWORD)
                 .clickLoginBtn();
-
         Assert.assertTrue(loginPage.getIncorrectMessageIsDisplayed(), "Нет сообщения о некорректных данных");
     }
 
@@ -70,7 +62,6 @@ public class LoginPageTest {
                 .inputFieldPassword(PASSWORD)
                 .inputFieldUsernameCheck(USERNAME)
                 .clickLoginBtn();
-
         Assert.assertTrue(loginPage.getPassedLoginTextIsDisplayed(), "Нет сообщения о успешной авторизации");
     }
 

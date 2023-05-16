@@ -9,7 +9,6 @@ import utils.JavaScriptExecutor;
 import utils.Webdriver;
 
 public class MainPageTest {
-
     public static final String TITLE = "Get Online Selenium";
     public static final String TITLE_BLOG = "Blog";
     public static final String TITLE_LIFETIME_COURSE = "Lifetime Membership Club | Free Selenium, Webservices Tutorials";
@@ -23,7 +22,6 @@ public class MainPageTest {
     @BeforeMethod
     public void setup() {
         driver.get(Webdriver.TESTING_URL);
-        // driver.manage().window().fullscreen();
     }
 
     @Test
@@ -44,16 +42,13 @@ public class MainPageTest {
     @Test
     public void windowAD() {
         actions.moveToUserElement(mainPage.getHeader());
-
         Assert.assertTrue(mainPage.getCloseADBtnIsDisplayed(), "Реклама не отображается");
     }
 
     @Test
     public void menuScrollTest() {
         jse.scrollPositive();
-
         mainPage.clickBlogBtnMenu();
-
         Assert.assertTrue(driver.getTitle().contains(TITLE_BLOG), "Заголовок неправильный / нет редиректа");
     }
 
@@ -65,40 +60,30 @@ public class MainPageTest {
     @Test
     public void courseTest() {
         actions.moveToUserElement(mainPage.getHeader());
-
         Assert.assertTrue(mainPage.getCourseIsDisplayed(), "Курсы не отображаются");
-
         mainPage.clickLifetimeBtn();
-
         Assert.assertTrue(driver.getTitle().contains(TITLE_LIFETIME_COURSE), "Заголовок неправильный / нет редиректа");
     }
 
     @Test
     public void sliderBlockTest() {
         actions.moveToUserElement(mainPage.getSliderCourse());
-
         mainPage.clickCloseADBtn();
-
         actions.mouseMovementUserElementOnlyX(mainPage.getSliderCourse(), 300, -500);
-
-        mainPage.clickRegisterNowBtn();
-
-        Assert.assertTrue(driver.getTitle().contains(TITLE_LIFETIME_COURSE), "Заголовок неправильный / нет редиректа");
+        actions.mouseMovementUserElementOnlyX(mainPage.getSliderCourse(), 300, -500);
+        Assert.assertTrue(mainPage.getSliderElementIsDisplayed(), "Сладер не сработал");
     }
 
     @Test
     public void sliderMenuCourseTest() {
         actions.moveToUserElement(mainPage.getAllCoursePosition());
-
         Assert.assertTrue(mainPage.getDevOpsBtnIsDisplayed(), "Кнопака devOps не отображается");
     }
 
     @Test
     public void practiceSiteOneTest() {
         actions.moveToUserElement(mainPage.getResourcesMenuSlider());
-
         mainPage.clickPracticeSiteOne();
-
         Assert.assertTrue(driver.getTitle().contains(TITLE_PRACTICE_SITE_ONE), "Заголовок неправильный / нет редиректа");
     }
 

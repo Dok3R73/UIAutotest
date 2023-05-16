@@ -31,22 +31,22 @@ public class MainPage {
     @FindBy(xpath = "(//a[@role='button'])[1]")
     private WebElement courseLifetimeBtn;
 
-    @FindBy(xpath = "//li[@id='menu-item-27617']//span[@class='menu-text'][normalize-space()='Resources']")
+    @FindBy(xpath = "//span[@class='menu-text'][normalize-space()='Resources']")
     private WebElement resourcesMenuSlider;
 
-    @FindBy(xpath = "//div[@class='elementor-repeater-item-4508007 swiper-slide swiper-slide-active']//a[@class='elementor-button elementor-slide-button elementor-size-sm'][normalize-space()='Register Now']")
-    private WebElement registerNowBtn;
+    @FindBy(xpath = "(//div[@class='elementor-slide-heading'][normalize-space()='Selenium 4.0 Latest Live batch'])[2]")
+    private WebElement sliderElement;
 
     @FindBy(xpath = "//div[@class='elementor-swiper']")
     private WebElement sliderCourse;
 
-    @FindBy(xpath = "//li[@id='menu-item-27580']//span[@class='sub-arrow']")
+    @FindBy(xpath = "(//span[@class='menu-text'][normalize-space()='All Courses'])")
     private WebElement allCoursePosition;
 
-    @FindBy(xpath = "//li[@id='menu-item-27592']")
+    @FindBy(xpath = "(//span[@class='menu-text'][normalize-space()='DevOps'])[1]")
     private WebElement devOpsBtn;
 
-    @FindBy(id = "menu-item-27618")
+    @FindBy(xpath = "(//span[@class='menu-text'][normalize-space()='Practice Site 1'])[1]")
     private WebElement practiceSiteOne;
 
     public MainPage(WebDriver driver) {
@@ -65,10 +65,6 @@ public class MainPage {
         closeADBtn.click();
     }
 
-    public void clickRegisterNowBtn() {
-        registerNowBtn.click();
-    }
-
     public void clickLifetimeBtn() {
         courseLifetimeBtn.click();
     }
@@ -79,6 +75,10 @@ public class MainPage {
 
     public Boolean getDevOpsBtnIsDisplayed() {
         return devOpsBtn.isDisplayed();
+    }
+
+    public Boolean getSliderElementIsDisplayed(){
+        return sliderElement.isDisplayed();
     }
 
     public WebElement getAllCoursePosition() {
