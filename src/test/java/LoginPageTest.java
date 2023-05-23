@@ -1,3 +1,4 @@
+import io.qameta.allure.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -22,6 +23,10 @@ public class LoginPageTest {
     }
 
     @Test(priority = 1)
+    @Severity(SeverityLevel.NORMAL)
+    @Epic("Авторизация")
+    @Story("Некорректный ввод логина и пароля (регистр)")
+    @Feature("Валидация полей")
     public void incorrectCaseUsernameTest() {
         loginPage.inputFieldUsername(CASE_USERNAME)
                 .inputFieldPassword(CASE_PASSWORD)
@@ -31,6 +36,10 @@ public class LoginPageTest {
     }
 
     @Test(priority = 2)
+    @Severity(SeverityLevel.NORMAL)
+    @Epic("Авторизация")
+    @Story("Некорректный ввод пароля (регистр)")
+    @Feature("Валидация полей")
     public void incorrectCasePasswordTest() {
         loginPage.inputFieldUsername(USERNAME)
                 .inputFieldPassword(CASE_PASSWORD)
@@ -40,6 +49,9 @@ public class LoginPageTest {
     }
 
     @Test(priority = 3)
+    @Severity(SeverityLevel.NORMAL)
+    @Epic("Авторизация")
+    @Feature("Валидация полей")
     public void emptyFieldTest() {
         loginPage.inputFieldUsernameCheck(USERNAME)
                 .inputFieldPassword(PASSWORD);
@@ -47,6 +59,10 @@ public class LoginPageTest {
     }
 
     @Test(priority = 4)
+    @Severity(SeverityLevel.NORMAL)
+    @Epic("Авторизация")
+    @Story("Некорректный ввод логина и пароля")
+    @Feature("Валидация полей")
     public void incorrectUsernameAndPasswordTest() {
         loginPage.inputFieldUsername(INCORRECT_USERNAME_AND_PASSWORD)
                 .inputFieldPassword(INCORRECT_USERNAME_AND_PASSWORD)
@@ -57,6 +73,9 @@ public class LoginPageTest {
 
 
     @Test(priority = 5)
+    @Severity(SeverityLevel.CRITICAL)
+    @Epic("Авторизация")
+    @Story("Успешная авторизация")
     public void correctLoginTest() {
         loginPage.inputFieldUsername(USERNAME)
                 .inputFieldPassword(PASSWORD)
@@ -68,5 +87,6 @@ public class LoginPageTest {
     @AfterClass
     public static void closeBrowser() {
         driver.close();
+        driver.quit();
     }
 }

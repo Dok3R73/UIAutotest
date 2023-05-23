@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,41 +33,42 @@ public class LoginPage {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Нажимает кнопку login")
     public LoginPage clickLoginBtn(){
         loginBtn.click();
         return this;
     }
 
+    @Step("Заполняет поле username значением {username}")
     public LoginPage inputFieldUsername(String username){
         fieldUsername.sendKeys(username);
         return this;
     }
 
+    @Step("Заполняет поле password значением {password}")
     public LoginPage inputFieldPassword(String password){
         fieldPassword.sendKeys(password);
         return this;
     }
 
+    @Step("Заполняет поле usernameCheck значением {username}")
     public LoginPage inputFieldUsernameCheck(String username){
         fieldUsernameCheck.sendKeys(username);
         return this;
     }
 
+    @Step("Проверяет что отображается текст успешной авторизации")
     public Boolean getPassedLoginTextIsDisplayed() {
         return passedLoginText.isDisplayed();
     }
 
+    @Step("Проверяет что отображается сообщение о некорректных данных")
     public Boolean getIncorrectMessageIsDisplayed() {
         return incorrectMessage.isDisplayed();
     }
 
+    @Step("Проверяет кликабельность кнопки login")
     public Boolean getLoginBtnIsEnabled() {
         return loginBtn.isEnabled();
-    }
-
-    public void clearAllField(){
-        fieldUsername.clear();
-        fieldPassword.clear();
-        fieldUsernameCheck.clear();
     }
 }
