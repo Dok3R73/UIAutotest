@@ -7,6 +7,8 @@ import org.testng.annotations.Test;
 import pages.LoginPage;
 import utils.Webdriver;
 
+@Epic("Авторизация")
+@Severity(SeverityLevel.NORMAL)
 public class LoginPageTest {
     public static final String USERNAME = "angular";
     public static final String PASSWORD = "password";
@@ -23,8 +25,6 @@ public class LoginPageTest {
     }
 
     @Test(priority = 1)
-    @Severity(SeverityLevel.NORMAL)
-    @Epic("Авторизация")
     @Story("Некорректный ввод логина и пароля (регистр)")
     @Feature("Валидация полей")
     public void incorrectCaseUsernameTest() {
@@ -36,8 +36,6 @@ public class LoginPageTest {
     }
 
     @Test(priority = 2)
-    @Severity(SeverityLevel.NORMAL)
-    @Epic("Авторизация")
     @Story("Некорректный ввод пароля (регистр)")
     @Feature("Валидация полей")
     public void incorrectCasePasswordTest() {
@@ -49,8 +47,6 @@ public class LoginPageTest {
     }
 
     @Test(priority = 3)
-    @Severity(SeverityLevel.NORMAL)
-    @Epic("Авторизация")
     @Feature("Валидация полей")
     public void emptyFieldTest() {
         loginPage.inputFieldUsernameCheck(USERNAME)
@@ -59,8 +55,6 @@ public class LoginPageTest {
     }
 
     @Test(priority = 4)
-    @Severity(SeverityLevel.NORMAL)
-    @Epic("Авторизация")
     @Story("Некорректный ввод логина и пароля")
     @Feature("Валидация полей")
     public void incorrectUsernameAndPasswordTest() {
@@ -73,8 +67,6 @@ public class LoginPageTest {
 
 
     @Test(priority = 5)
-    @Severity(SeverityLevel.CRITICAL)
-    @Epic("Авторизация")
     @Story("Успешная авторизация")
     public void correctLoginTest() {
         loginPage.inputFieldUsername(USERNAME)
@@ -86,7 +78,6 @@ public class LoginPageTest {
 
     @AfterClass
     public static void closeBrowser() {
-        driver.close();
         driver.quit();
     }
 }
