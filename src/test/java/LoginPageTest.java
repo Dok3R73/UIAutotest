@@ -25,8 +25,8 @@ public class LoginPageTest {
     }
 
     @Test(priority = 1)
-    @Story("Некорректный ввод логина и пароля (регистр)")
     @Feature("Валидация полей")
+    @Story("Некорректный ввод логина и пароля (регистр)")
     public void incorrectCaseUsernameTest() {
         loginPage.inputFieldUsername(CASE_USERNAME)
                 .inputFieldPassword(CASE_PASSWORD)
@@ -36,8 +36,8 @@ public class LoginPageTest {
     }
 
     @Test(priority = 2)
-    @Story("Некорректный ввод пароля (регистр)")
     @Feature("Валидация полей")
+    @Story("Некорректный ввод пароля (регистр)")
     public void incorrectCasePasswordTest() {
         loginPage.inputFieldUsername(USERNAME)
                 .inputFieldPassword(CASE_PASSWORD)
@@ -55,8 +55,8 @@ public class LoginPageTest {
     }
 
     @Test(priority = 4)
-    @Story("Некорректный ввод логина и пароля")
     @Feature("Валидация полей")
+    @Story("Некорректный ввод логина и пароля")
     public void incorrectUsernameAndPasswordTest() {
         loginPage.inputFieldUsername(INCORRECT_USERNAME_AND_PASSWORD)
                 .inputFieldPassword(INCORRECT_USERNAME_AND_PASSWORD)
