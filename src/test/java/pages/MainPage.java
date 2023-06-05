@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -53,18 +54,22 @@ public class MainPage {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Кликает на пунк меню blog")
     public void clickBlogBtnMenu() {
         blogBtnMenu.click();
     }
 
+    @Step("Нажимает practice site 1 в выпадающем списке resources")
     public void clickPracticeSiteOne() {
         practiceSiteOne.click();
     }
 
+    @Step("Нажимает на кнопку закрыть рекламу")
     public void clickCloseADBtn() {
         closeADBtn.click();
     }
 
+    @Step("Нажимает кнопку read more в курсе lifetime")
     public void clickLifetimeBtn() {
         courseLifetimeBtn.click();
     }
@@ -73,11 +78,13 @@ public class MainPage {
         return sliderCourse;
     }
 
+    @Step("Проверяет отоброжение кнопки devOps в выпадающем списке all courses")
     public Boolean getDevOpsBtnIsDisplayed() {
         return devOpsBtn.isDisplayed();
     }
 
-    public Boolean getSliderElementIsDisplayed(){
+    @Step("Проверяет отображение слайдера")
+    public Boolean getSliderElementIsDisplayed() {
         return sliderElement.isDisplayed();
     }
 
@@ -85,10 +92,12 @@ public class MainPage {
         return allCoursePosition;
     }
 
+    @Step("Проверяет отображение заголовока")
     public Boolean getHeaderIsDisplayed() {
         return header.isDisplayed();
     }
 
+    @Step("Проверяет отображение курсов")
     public Boolean getCourseIsDisplayed() {
         return course.isDisplayed();
     }
@@ -97,14 +106,17 @@ public class MainPage {
         return resourcesMenuSlider;
     }
 
+    @Step("Проверяет отображение горизонтального меню")
     public Boolean getHorizontalMenuIsDisplayed() {
         return horizontalMenu.isDisplayed();
     }
 
+    @Step("Проверяет отображение кнопки закрыть рекламу")
     public Boolean getCloseADBtnIsDisplayed() {
         return closeADBtn.isDisplayed();
     }
 
+    @Step("Проверяет отображение подвала")
     public Boolean getFooterIsDisplayed() {
         return footer.isDisplayed();
     }
