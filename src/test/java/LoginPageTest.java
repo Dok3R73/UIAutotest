@@ -1,13 +1,12 @@
 import io.qameta.allure.*;
+import lombok.Data;
+import lombok.Getter;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.LoginPage;
 import utils.Webdriver;
 
@@ -15,8 +14,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+@Getter
 @Epic("Авторизация")
 @Severity(SeverityLevel.NORMAL)
+@Listeners(ScreenshotOnFailureListener.class)
 public class LoginPageTest {
     public static final String USERNAME = "angular";
     public static final String PASSWORD = "password";
@@ -24,8 +25,9 @@ public class LoginPageTest {
     public static final String CASE_PASSWORD = "pAssWoRd";
     public static final String INCORRECT_USERNAME_AND_PASSWORD = "test";
 
-    public static WebDriver driver = Webdriver.getChromeDriver();
-    public static LoginPage loginPage = new LoginPage(driver);
+    private final WebDriver driver = Webdriver.getChromeDriver();
+    public LoginPage loginPage = new LoginPage(driver);
+
 
     @BeforeMethod
     public void setup() {
@@ -87,13 +89,12 @@ public class LoginPageTest {
     @Test(priority = 6)
     @Story("Проверка работы скриншота")
     public void correctLoginTestFail() {
-        loginPage.inputFieldUsername(USERNAME)
+        loginPage.inputFieldUsername(PASSWORD)
                 .inputFieldPassword(PASSWORD)
-                .inputFieldUsernameCheck(USERNAME)
+                .inputFieldUsernameCheck(PASSWORD)
                 .clickLoginBtn();
         Assert.assertTrue(loginPage.getPassedLoginTextIsDisplayed(), "Нет сообщения о успешной авторизации");
     }
-
     @AfterMethod
     public void afterEachTest(ITestResult result) throws IOException {
         if (result.getStatus() == ITestResult.FAILURE) {
@@ -101,9 +102,8 @@ public class LoginPageTest {
             Allure.addAttachment("Screenshot", new FileInputStream(screenshot));
         }
     }
-
     @AfterClass
-    public static void closeBrowser() {
+    public void closeBrowser() {
         driver.quit();
     }
 }

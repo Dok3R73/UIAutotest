@@ -1,16 +1,12 @@
 import io.qameta.allure.*;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.ITestResult;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 import pages.LoginPage;
 import utils.Webdriver;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 
 @Epic("Авторизация")
 @Severity(SeverityLevel.NORMAL)
@@ -51,15 +47,7 @@ public class LoginPageDPTest {
         if (username.equals(USERNAME) && password.equals(PASSWORD)) {
             Assert.assertTrue(loginPage.getPassedLoginTextIsDisplayed(), "Нет сообщения об успешной авторизации");
         } else {
-            Assert.assertTrue(loginPage.getIncorrectMessageIsDisplayed(), "Нет  сообщения о некорректных данных");
-        }
-    }
-
-    @AfterMethod
-    public void afterEachTest(ITestResult result) throws IOException {
-        if (result.getStatus() == ITestResult.FAILURE) {
-            File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            Allure.addAttachment("Screenshot", new FileInputStream(screenshot));
+            Assert.assertTrue(loginPage.getIncorrectMessageIsDisplayed(), "Нет сообщения о некорректных данных");
         }
     }
 
