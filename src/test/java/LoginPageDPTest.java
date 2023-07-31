@@ -47,7 +47,7 @@ public class LoginPageDPTest {
         if (username.equals(USERNAME) && password.equals(PASSWORD)) {
             Assert.assertTrue(loginPage.getPassedLoginTextIsDisplayed(), "Нет сообщения об успешной авторизации");
         } else {
-            Assert.assertTrue(loginPage.getIncorrectMessageIsDisplayed(), "Нет  сообщения о некорректных данных");
+            Assert.assertTrue(loginPage.getIncorrectMessageIsDisplayed(), "Нет сообщения о некорректных данных");
         }
     }
 

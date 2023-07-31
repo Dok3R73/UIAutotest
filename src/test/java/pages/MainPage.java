@@ -78,6 +78,7 @@ public class MainPage {
         return sliderCourse;
     }
 
+
     @Step("Проверяет отоброжение кнопки devOps в выпадающем списке all courses")
     public Boolean getDevOpsBtnIsDisplayed() {
         return devOpsBtn.isDisplayed();
