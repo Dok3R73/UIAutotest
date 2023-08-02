@@ -31,6 +31,8 @@ public class CookieTest {
         driver.get("https://www.sql-ex.ru/");
         ctp.clickLoginBtn();
         cookiesMapper.saveCookiesToFile(driver.manage().getCookies());
+        Assert.assertTrue(ctp.getbtnExit(), "Авторизация не удалась");
+        Assert.assertTrue(cookiesMapper.existsFileCookies(), "Cookies не сохранились");
     }
 
     @Test(priority = 2)
