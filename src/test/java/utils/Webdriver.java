@@ -12,7 +12,7 @@ public class Webdriver {
 
     public static ChromeDriver getChromeDriver() {
         String path = System.getProperty("user.dir");
-        String chromeDriverPath = path + "\\webdrivers\\chromedriver113.exe";
+        String chromeDriverPath = path + "\\webdrivers\\chromedriver115.exe";
         System.setProperty("webdriver.chrome.driver", chromeDriverPath);
 
         ChromeOptions options = new ChromeOptions();
