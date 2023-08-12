@@ -10,6 +10,8 @@ import java.util.Set;
 
 public class CookiesMapper {
 
+    private final Gson gson = new Gson();
+
     public Boolean existsFileCookies() {
         File cookiesFile = new File("cookies.json");
         return cookiesFile.exists();
@@ -18,7 +20,6 @@ public class CookiesMapper {
     public Set<Cookie> readCookiesFromFile() {
         Set<Cookie> cookies = null;
         try (Reader reader = new FileReader("cookies.json")) {
-            Gson gson = new Gson();
             Type setType = new TypeToken<Set<Cookie>>() {
             }.getType();
             cookies = gson.fromJson(reader, setType);
@@ -30,7 +31,6 @@ public class CookiesMapper {
 
     public void saveCookiesToFile(Set<Cookie> cookies) {
         try (FileWriter fileWriter = new FileWriter("cookies.json")) {
-            Gson gson = new Gson();
             gson.toJson(cookies, fileWriter);
         } catch (IOException e) {
             e.printStackTrace();

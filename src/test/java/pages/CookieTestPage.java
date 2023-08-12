@@ -12,10 +12,6 @@ public class CookieTestPage {
     @FindBy(xpath = "//input[@name='subm2']")
     private WebElement loginBtn;
 
-    public void clickLoginBtn() {
-        loginBtn.click();
-    }
-
     @FindBy(xpath = "//img[@title='Выход...']")
     private WebElement btnExit;
 
@@ -25,5 +21,9 @@ public class CookieTestPage {
 
     public Boolean getbtnExit() {
         return btnExit.isDisplayed();
+    }
+
+    public void clickLoginBtn() {
+        loginBtn.click();
     }
 }
